@@ -1,0 +1,9 @@
+package com.alexandre.cursos.repositories;
+import org.springframework.stereotype.Repository;
+
+import com.alexandre.cursos.domain.Categoria;
+
+@Repository
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer>  {
+
+}
