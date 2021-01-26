@@ -1,0 +1,29 @@
+[33mcommit 2988e04c3cf7edff85de66fefa467bc5a0f895ee[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: pauloons <pauloons@gmail.com>
+Date:   Sun Jan 24 02:02:17 2021 -0300
+
+    criando Repository e Service para Categoria
+
+[33mcommit ed3a75231f3d560aed7d457bf892b1db3fac9560[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: pauloons <pauloons@gmail.com>
+Date:   Tue Jan 19 00:32:47 2021 -0300
+
+    Estrutura Inicial
+
+[33mcommit 3a14053bdd898fcb5523220c873d962a4b2eb14f[m
+Author: pauloons <pauloons@gmail.com>
+Date:   Fri Jan 15 00:51:05 2021 -0300
+
+    Test primeira classe de dominio
+
+[33mcommit b9985adb795db0817e4ec12136a54275d78026e3[m
+Author: pauloons <pauloons@gmail.com>
+Date:   Fri Jan 15 00:11:00 2021 -0300
+
+    Projeto Iniciado e testado
+
+[33mcommit c81b6ccbb56bb4afd2e5177113f91df017b6e42a[m
+Author: pauloons <pauloons@gmail.com>
+Date:   Thu Jan 14 22:26:25 2021 -0300
+
+    Criação do Projeto
