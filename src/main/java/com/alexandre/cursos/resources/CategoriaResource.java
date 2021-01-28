@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alexandre.cursos.services.CategoriaService;
 
+import javassist.tools.rmi.ObjectNotFoundException;
+
 @RestController
 @RequestMapping(value = "/categorias")
 
@@ -18,7 +20,7 @@ public class CategoriaResource {
 	private CategoriaService service;
 	
 	@RequestMapping(value ="/{Id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer Id) {
+	public ResponseEntity<?> find(@PathVariable Integer Id) throws ObjectNotFoundException {
 	
 	Object obj = service.find(Id);
 		return ResponseEntity.ok().body(obj);

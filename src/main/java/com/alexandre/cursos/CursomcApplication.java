@@ -1,7 +1,6 @@
 package com.alexandre.cursos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,13 +8,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.alexandre.cursos.domain.Categoria;
+import com.alexandre.cursos.domain.Produto;
 import com.alexandre.cursos.repositories.CategoriaRepository;
+import com.alexandre.cursos.repositories.ProdutosRepository;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
     
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private ProdutosRepository produtosRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -24,13 +28,22 @@ public class CursomcApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		 Categoria cat1 = new Categoria(null, "tests");
+		 Categoria cat1 = new Categoria(null, "Informatica");
 		 Categoria cat2 = new Categoria(null, "Escritorio");
-		 List<Categoria> lista = new ArrayList<>();
-		 lista.add(cat1);
-		 lista.add(cat2);
+	
+		 Produto p1 = new Produto(null,"Computador", 2.500); 
+		 Produto p2 = new Produto(null,"Impressora", 1.000);
+		 Produto p3 = new Produto(null,"Mouse", 50.00);
 		 
-		 categoriaRepository.saveAll(lista); 
+		 cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3));
+		 cat1.getProdutos().addAll(Arrays.asList(p2));
+		 
+		 p1.getCategorias().addAll(Arrays.asList(cat1));
+		 p2.getCategorias().addAll(Arrays.asList(cat1,cat2));
+		 p3.getCategorias().addAll(Arrays.asList(cat1));
+		 
+		 categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
+		 produtosRepository.saveAll(Arrays.asList(p1,p2,p3));
 
 	}
 	
