@@ -15,17 +15,27 @@ import javax.persistence.OneToMany;
 public class Estado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+@Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+private Integer id;
+private String nome;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String nome;
-	
-	@OneToMany(mappedBy = "estado")
-		private List<Cidade> cidades = new ArrayList<>();	
-	
+@OneToMany(mappedBy="estado")
+private List<Cidade> cidades = new ArrayList(); 
+
+	public List<Cidade> getCidades() {
+	return cidades;
+}
+
+
+public void setCidades(List<Cidade> cidades) {
+	this.cidades = cidades;
+}
+
+
 	public Estado() {
 	}
+
 
 	public Estado(Integer id, String nome) {
 		super();
@@ -70,5 +80,6 @@ public class Estado implements Serializable {
 			return false;
 		return true;
 	}
+
 
 }
