@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import org.springframework.web.bind.annotation.Mapping;
 
 import com.alexandre.cursos.domain.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 
@@ -34,6 +35,7 @@ public class Cliente  implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	public List <Endereco> enderecos = new ArrayList<>();
 	
@@ -90,8 +92,6 @@ public class Cliente  implements Serializable {
 		public void setTipo(TipoCliente tipo) { 
 		 this.tipo = tipo.getCod();
 		 }
-		
-		
 		
 	public List<Endereco> getEnderecos() {
 			return enderecos;
