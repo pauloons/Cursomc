@@ -23,6 +23,7 @@ private String nome;
 
 @JsonBackReference
 @OneToMany(mappedBy="estado")
+
 private List<Cidade> cidades = new ArrayList(); 
 
 	public List<Cidade> getCidades() {

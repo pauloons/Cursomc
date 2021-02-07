@@ -13,7 +13,7 @@ import com.alexandre.cursos.domain.Cliente;
 import com.alexandre.cursos.domain.Endereco;
 import com.alexandre.cursos.domain.Estado;
 import com.alexandre.cursos.domain.Produto;
-import com.alexandre.cursos.domain.enums.TipoCliente;
+import com.alexandre.cursos.domain.enums.Tipo_Cliente;
 import com.alexandre.cursos.repositories.CategoriaRepository;
 import com.alexandre.cursos.repositories.CidadeRepository;
 import com.alexandre.cursos.repositories.ClienteRepository;
@@ -80,8 +80,8 @@ public class CursomcApplication implements CommandLineRunner {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
 
-		Cliente cli1 = new Cliente(null, "Paulo", "pauloons@gmail.com", "0238050923", TipoCliente.PESSOAFISICA);
-		Cliente cli2 = new Cliente(null, "Thamyres", "thamyres@gmail.com", "017657745", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Paulo", "pauloons@gmail.com", "0238050923", Tipo_Cliente.PESSOAFISICA);
+		Cliente cli2 = new Cliente(null, "Thamyres", "thamyres@gmail.com", "017657745", Tipo_Cliente.PESSOAFISICA);
 
 		cli1.getTelefones().addAll(Arrays.asList("981019380", "34346067"));
 		cli2.getTelefones().addAll(Arrays.asList("984554845", "33545564"));
