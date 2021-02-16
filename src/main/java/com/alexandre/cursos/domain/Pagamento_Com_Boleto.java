@@ -2,6 +2,11 @@ package com.alexandre.cursos.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
+import com.alexandre.cursos.domain.enums.Estado_Pagamento;
+
+@Entity
 public class Pagamento_Com_Boleto extends Pagamento {
 	
 	private static final long serialVersionUID = 1L;
@@ -11,13 +16,14 @@ public class Pagamento_Com_Boleto extends Pagamento {
 	
 	public Pagamento_Com_Boleto() {}
 
-	public Pagamento_Com_Boleto(Integer id, Estado estadoPagamento, Cliente cliente, Endereco endereco_de_entrega,
-			                                Date data_Vencimento, Date data_Pagamento) {
-		super(id, estadoPagamento, cliente, endereco_de_entrega);
+	public Pagamento_Com_Boleto(Integer id, Pedido pedido, Estado_Pagamento estado, Date data_Vencimento,
+			Date data_Pagamento) {
+		super(id, pedido, estado);
 		this.data_Vencimento = data_Vencimento;
 		this.data_Pagamento = data_Pagamento;
-	
 	}
+
+
 
 	public Date getData_Vencimento() {
 		return data_Vencimento;

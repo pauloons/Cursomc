@@ -1,5 +1,6 @@
 package com.alexandre.cursos.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -7,33 +8,46 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+
 @Entity
-public class Pedido {
-	
+public class Pedido implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date instante;
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "pedido")
+	
+	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
 	private Pagamento pagamento;
 
+	@ManyToOne
+	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
-
-	private Endereco endereco_de_entrega;
+	
+	@ManyToOne
+	@JoinColumn(name="endereco_id")
+	private Endereco endereco_De_Entrega;
 	
 	public Pedido() {}
 
-	public Pedido(Integer id, Date instante, Pagamento pagamento, Cliente cliente, Endereco endereco_de_entrega) {
+	public Pedido(Integer id, Date instante, Cliente cliente, Endereco endereco_De_Entrega) {
 		super();
 		this.id = id;
 		this.instante = instante;
-		this.pagamento = pagamento;
 		this.cliente = cliente;
-		this.endereco_de_entrega = endereco_de_entrega;
+		this.endereco_De_Entrega = endereco_De_Entrega;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -67,12 +81,12 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	public Endereco getEndereco_de_entrega() {
-		return endereco_de_entrega;
+	public Endereco getEndereco_De_Entrega() {
+		return endereco_De_Entrega;
 	}
 
-	public void setEndereco_de_entrega(Endereco endereco_de_entrega) {
-		this.endereco_de_entrega = endereco_de_entrega;
+	public void setEndereco_De_Entrega(Endereco endereco_De_Entrega) {
+		this.endereco_De_Entrega = endereco_De_Entrega;
 	}
 
 	@Override

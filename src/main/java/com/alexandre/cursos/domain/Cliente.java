@@ -12,13 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.springframework.web.bind.annotation.Mapping;
-
 import com.alexandre.cursos.domain.enums.Tipo_Cliente;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -43,7 +40,9 @@ public class Cliente  implements Serializable {
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 
-	public List <Pedido> pedido = new ArrayList<>();
+	@JsonIgnore
+	@OneToMany(mappedBy="cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
 
 	public Cliente() {
 		
@@ -56,11 +55,11 @@ public class Cliente  implements Serializable {
 		this.tipo = tipo.getCod();
 	}
 
-	public List<Pedido> getPedido() {
-		return pedido;
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
-	public void setPedido(List<Pedido> pedido) {
-		this.pedido = pedido;
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 	public Integer getId() {
 		return id;
