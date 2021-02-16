@@ -11,6 +11,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.alexandre.cursos.domain.enums.Estado_Pagamento;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -20,15 +21,15 @@ public abstract class Pagamento implements Serializable {
 
 	@Id
 	private Integer id;
+	
+	private Estado_Pagamento estado;
 
-	@JoinColumn(name = "pedido_id")
+	@JsonIgnore
 	@OneToOne
+	@JoinColumn(name = "pedido_id")
 	@MapsId
 	private Pedido pedido;
 
-	private Estado_Pagamento estado;
-
-	
 	public Pagamento(Integer id, Pedido pedido, Estado_Pagamento estado) {
 		super();
 		this.id = id;
@@ -46,8 +47,6 @@ public abstract class Pagamento implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public Pedido getPedido() {
 		return pedido;
