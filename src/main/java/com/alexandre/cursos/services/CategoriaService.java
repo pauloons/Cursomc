@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.alexandre.cursos.domain.Categoria;
+import com.alexandre.cursos.dto.CategoriaDTO;
 import com.alexandre.cursos.repositories.CategoriaRepository;
 import com.alexandre.cursos.services.exeptions.DataIntegridyExeption;
 
@@ -54,6 +55,9 @@ public class CategoriaService {
 public Page<Categoria> findPage(Integer page, Integer linesPerPage,String OrderBy, String direction){
 	PageRequest pageRequest = PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction), OrderBy);
 	return repo.findAll(pageRequest);
+}
+public Categoria fromDTO(CategoriaDTO objDto) {
+	return new  Categoria(objDto.getId(),objDto.getNome());
 }
 
 }
