@@ -1,4 +1,4 @@
-package com.alexandre.cursos.services.exeptions;
+package com.alexandre.cursos.resources.exeption;
 
 import java.io.Serializable;
 
