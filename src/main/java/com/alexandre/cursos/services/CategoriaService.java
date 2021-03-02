@@ -56,8 +56,8 @@ public Page<Categoria> findPage(Integer page, Integer linesPerPage,String OrderB
 	PageRequest pageRequest = PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction), OrderBy);
 	return repo.findAll(pageRequest);
 }
-public Categoria fromDTO(CategoriaDTO objDto) {
-	return new  Categoria(objDto.getId(),objDto.getNome());
-}
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
+	}
 
 }

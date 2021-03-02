@@ -1,8 +1,16 @@
 package com.alexandre.cursos.services;
 
+import java.util.List;
 import java.util.Optional;
 
+import com.alexandre.cursos.domain.Cliente;
+import com.alexandre.cursos.dto.ClienteDTO;
+import com.alexandre.cursos.services.exeptions.DataIntegridyExeption;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.alexandre.cursos.domain.Cliente;
@@ -20,6 +28,43 @@ public class ClienteService {
 		 Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 		 "Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
-		} 
+		}
 
+	public List<Cliente> findAll()  {
+		return repo.findAll();
+	}
+
+	public Cliente insert(Cliente obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+
+	public Cliente update(Cliente obj) throws ObjectNotFoundException {
+		Cliente newObj = find(obj.getId());
+		updateData(newObj,obj);
+		return repo.save(newObj);
+
+	}
+
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
+	}
+
+	public void delete(Integer id) throws ObjectNotFoundException {
+		find(id);
+		try {
+			repo.deleteById(id);
+		}catch (DataIntegrityViolationException e) {
+			throw new DataIntegridyExeption("Não é possivel excluir uma Cliente sem pedido");
+		}
+	}
+
+	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String OrderBy, String direction){
+		PageRequest pageRequest = PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction), OrderBy);
+		return repo.findAll(pageRequest);
+	}
+	public Cliente fromDTO(ClienteDTO objDto) {
+return  new Cliente(objDto.getId(),objDto.getNome(),objDto.getEmail(),null,null);
+	}
 }
