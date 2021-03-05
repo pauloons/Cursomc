@@ -3,6 +3,7 @@ package com.alexandre.cursos.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.alexandre.cursos.domain.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -38,10 +39,15 @@ public class CategoriaService {
 		return repo.save(obj);
 	}
 
-	public Categoria update(Categoria obj) throws ObjectNotFoundException {
-		find(obj.getId());
-		return repo.save(obj);
 
+	public Categoria update(Categoria obj) throws ObjectNotFoundException {
+		Categoria newObj = find(obj.getId());
+		updateData(newObj,obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
 	}
 
 	public void delete(Integer id) throws ObjectNotFoundException {
