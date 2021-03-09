@@ -3,7 +3,6 @@ package com.alexandre.cursos.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.alexandre.cursos.domain.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -15,8 +14,7 @@ import com.alexandre.cursos.domain.Categoria;
 import com.alexandre.cursos.dto.CategoriaDTO;
 import com.alexandre.cursos.repositories.CategoriaRepository;
 import com.alexandre.cursos.services.exeptions.DataIntegridyExeption;
-
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.alexandre.cursos.services.exeptions.ObjectNotFoundExeption;
 
 @Service
 public class CategoriaService {
@@ -24,9 +22,9 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 
-	public Categoria find(Integer id) throws ObjectNotFoundException {
+	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException(
+		return obj.orElseThrow(() -> new ObjectNotFoundExeption(
 				"Objeto nãooooooo encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
 
@@ -40,7 +38,7 @@ public class CategoriaService {
 	}
 
 
-	public Categoria update(Categoria obj) throws ObjectNotFoundException {
+	public Categoria update(Categoria obj)  {
 		Categoria newObj = find(obj.getId());
 		updateData(newObj,obj);
 		return repo.save(newObj);
@@ -50,7 +48,7 @@ public class CategoriaService {
 		newObj.setNome(obj.getNome());
 	}
 
-	public void delete(Integer id) throws ObjectNotFoundException {
+	public void delete(Integer id) {
 		find(id);
 		try {
 		repo.deleteById(id);

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.alexandre.cursos.domain.Pedido;
 import com.alexandre.cursos.repositories.PedidoRepository;
 
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.alexandre.cursos.services.exeptions.ObjectNotFoundExeption;
 
 @Service
 public class PedidoService {
@@ -16,9 +16,9 @@ public class PedidoService {
 	@Autowired
 	private PedidoRepository repo;
 
-	public Pedido find(Integer id) throws ObjectNotFoundException {
+	public Pedido find(Integer id){
 		 Optional<Pedido> obj = repo.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException(
+		return obj.orElseThrow(() -> new ObjectNotFoundExeption(
 		 "Objeto não encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName()));
 		} 
 

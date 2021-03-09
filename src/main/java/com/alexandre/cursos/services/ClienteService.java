@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 import com.alexandre.cursos.repositories.ClienteRepository;
 import com.alexandre.cursos.repositories.EnderecoRepository;
 
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.alexandre.cursos.services.exeptions.ObjectNotFoundExeption;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.transaction.TransactionScoped;
@@ -39,9 +39,9 @@ public class ClienteService {
 	private EnderecoRepository enderecoRepository;
 
 
-	public Cliente find(Integer id) throws ObjectNotFoundException {
+	public Cliente find(Integer id){
 		Optional<Cliente> obj = repo.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException(
+		return obj.orElseThrow(() -> new ObjectNotFoundExeption(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
 
@@ -66,7 +66,7 @@ Dessa forma inclui apenas o cliente sem o endereço é preciso fazer alteraçõe
 	}*/
 
 
-	public Cliente update(Cliente obj) throws ObjectNotFoundException {
+	public Cliente update(Cliente obj) {
 		Cliente newObj = find(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(newObj);
@@ -77,7 +77,7 @@ Dessa forma inclui apenas o cliente sem o endereço é preciso fazer alteraçõe
 		newObj.setEmail(obj.getEmail());
 	}
 
-	public void delete(Integer id) throws ObjectNotFoundException {
+	public void delete(Integer id) {
 		find(id);
 		try {
 			repo.deleteById(id);
