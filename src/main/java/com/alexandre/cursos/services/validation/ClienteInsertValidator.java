@@ -10,6 +10,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.alexandre.cursos.domain.enums.Tipo_Cliente;
 import com.alexandre.cursos.services.validation.utils.Br;
@@ -27,6 +28,7 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 
     @Override
     public boolean isValid(ClienteNewDTO objDto, ConstraintValidatorContext context) {
+
         List<FieldMessage> list = new ArrayList<>();
 
         // inclua os testes aqui, inserindo erros na lista
