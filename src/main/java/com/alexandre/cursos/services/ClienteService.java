@@ -10,7 +10,7 @@ import com.alexandre.cursos.domain.enums.Tipo_Cliente;
 import com.alexandre.cursos.dto.ClienteDTO;
 import com.alexandre.cursos.dto.ClienteNewDTO;
 import com.alexandre.cursos.repositories.CidadeRepository;
-import com.alexandre.cursos.services.exeptions.DataIntegridyExeption;
+import com.alexandre.cursos.services.exeptions.DataIntegrityException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -23,8 +23,6 @@ import com.alexandre.cursos.repositories.EnderecoRepository;
 
 import com.alexandre.cursos.services.exeptions.ObjectNotFoundExeption;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.transaction.TransactionScoped;
 
 @Service
 public class ClienteService {
@@ -81,12 +79,11 @@ Dessa forma inclui apenas o cliente sem o endereço é preciso fazer alteraçõe
 		find(id);
 		try {
 			repo.deleteById(id);
-		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegridyExeption("Não é possivel excluir uma Cliente sem pedido");
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir porque há entidades relacionadas");
 		}
 	}
-
-
 
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String OrderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), OrderBy);

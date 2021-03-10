@@ -26,7 +26,7 @@ public class Cliente  implements Serializable {
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-	//Esse cascadeType serviu para que
+
 	@OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
 	public List <Endereco> enderecos = new ArrayList<>();
 	
