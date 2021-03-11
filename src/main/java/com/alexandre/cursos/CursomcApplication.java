@@ -106,13 +106,16 @@ public class CursomcApplication implements CommandLineRunner {
 
 		Cliente cli1 = new Cliente(null, "Paulo", "pauloons@gmail.com", "0238050923", Tipo_Cliente.PESSOAFISICA);
 		Cliente cli2 = new Cliente(null, "Thamyres", "thamyres@gmail.com", "017657745", Tipo_Cliente.PESSOAFISICA);
+		Cliente cli3 = new Cliente(null, "Gabriel", "gabi@gmail.com", "0238050923", Tipo_Cliente.PESSOAJURIDICA);
 
 		cli1.getTelefones().addAll(Arrays.asList("981019380", "34346067"));
 		cli2.getTelefones().addAll(Arrays.asList("984554845", "33545564"));
 
-		Endereco e1 = new Endereco(null, "logadouro", "10", "Na rua do Frango", "Recanto das Emas", "72640206", c4,
+		Endereco e1 = new Endereco(null, "qd 203", "10", "Na rua do Frango", "Recanto das Emas", "72640206", c4,
 				cli2);
-		Endereco e2 = new Endereco(null, "logadouro", "255", "Proximo ao primor", "Samambaia", "7254778", c4, cli1);
+		Endereco e2 = new Endereco(null, "qd 406", "255", "Proximo ao primor", "Samambaia", "7254778", c3, cli1);
+
+		Endereco e3 = new Endereco(null, "qd 603", "555", "Proximo ao Euro", "Riacho", "7254778", c2, cli3);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1));
 		cli1.getEnderecos().addAll(Arrays.asList(e2));
@@ -123,7 +126,9 @@ public class CursomcApplication implements CommandLineRunner {
 		SimpleDateFormat est = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
 		Pedido ped1 = new Pedido(null, est.parse("26/02/1988 14:31"), cli1, e1);
-		Pedido ped2 = new Pedido(null, est.parse("18/04/1998 15:12"), cli1, e2);
+		Pedido ped2 = new Pedido(null, est.parse("18/04/1998 15:12"), cli2, e2);
+		Pedido ped3 = new Pedido(null, est.parse("22/09/1983 14:32"), cli3, e3);
+
 
 		Pagamento pgt1 = new Pagamento_Com_Cartao(null, ped1, Estado_Pagamento.PENDENTE, 2);
 		ped1.setPagamento(pgt1);
@@ -131,6 +136,9 @@ public class CursomcApplication implements CommandLineRunner {
 		Pagamento pgt2 = new Pagamento_Com_Boleto(null, ped2, Estado_Pagamento.QUITADO, est.parse("18/04/2001 21:03"),
 				est.parse("18/04/200 21:15"));
 		ped2.setPagamento(pgt2);
+
+		Pagamento pgt3 = new Pagamento_Com_Cartao(null, ped3, Estado_Pagamento.PENDENTE, 3);
+		ped1.setPagamento(pgt3);
 
 		cli1.getPedidos().addAll(Arrays.asList(ped1));
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
