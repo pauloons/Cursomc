@@ -147,7 +147,7 @@ public class CursomcApplication implements CommandLineRunner {
 				cli2);
 		Endereco e2 = new Endereco(null, "qd 406", "255", "Proximo ao primor", "Samambaia", "7254778", c3, cli1);
 
-		Endereco e3 = new Endereco(null, "qd 603", "555", "Proximo ao Euro", "Riacho", "7254778", c2, cli3);
+		//Endereco e3 = new Endereco(null, "qd 603", "555", "Proximo ao Euro", "Riacho", "7254778", c2, cli3);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1));
 		cli1.getEnderecos().addAll(Arrays.asList(e2));
@@ -159,7 +159,7 @@ public class CursomcApplication implements CommandLineRunner {
 
 		Pedido ped1 = new Pedido(null, est.parse("26/02/1988 14:31"), cli1, e1);
 		Pedido ped2 = new Pedido(null, est.parse("18/04/1998 15:12"), cli2, e2);
-		Pedido ped3 = new Pedido(null, est.parse("22/09/1983 14:32"), cli3, e3);
+		//Pedido ped3 = new Pedido(null, est.parse("22/09/1983 14:32"), cli3, e3);
 
 
 		Pagamento pgt1 = new Pagamento_Com_Cartao(null, ped1, Estado_Pagamento.PENDENTE, 2);
@@ -169,7 +169,7 @@ public class CursomcApplication implements CommandLineRunner {
 				est.parse("18/04/200 21:15"));
 		ped2.setPagamento(pgt2);
 
-		Pagamento pgt3 = new Pagamento_Com_Cartao(null, ped3, Estado_Pagamento.PENDENTE, 3);
+		Pagamento pgt3 = new Pagamento_Com_Cartao(null, ped1, Estado_Pagamento.PENDENTE, 3);
 		ped1.setPagamento(pgt3);
 
 		cli1.getPedidos().addAll(Arrays.asList(ped1));
