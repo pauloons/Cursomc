@@ -1,11 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.alexandre.cursos.CursomcApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 10.033 s <<< FAILURE! - in com.alexandre.cursos.CursomcApplicationTests
-contextLoads  Time elapsed: 0.015 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: java.lang.IllegalStateException: Failed to execute CommandLineRunner
-Caused by: org.springframework.dao.InvalidDataAccessApiUsageException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : com.alexandre.cursos.domain.Pedido.cliente -> com.alexandre.cursos.domain.Cliente; nested exception is java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : com.alexandre.cursos.domain.Pedido.cliente -> com.alexandre.cursos.domain.Cliente
-Caused by: java.lang.IllegalStateException: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : com.alexandre.cursos.domain.Pedido.cliente -> com.alexandre.cursos.domain.Cliente
-Caused by: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing : com.alexandre.cursos.domain.Pedido.cliente -> com.alexandre.cursos.domain.Cliente
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.304 s - in com.alexandre.cursos.CursomcApplicationTests
